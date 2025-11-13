@@ -1,0 +1,14 @@
+requests
+dotenv
+scikit-learn 
+numpy
+sentence_transformers
+chromadb
+rank-bm25
+nltk
+pandas
+langchain_groq
+langchain_core
+google-generativeai
+langchain
+rapidfuzz
