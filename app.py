@@ -3,10 +3,18 @@ from pydantic import BaseModel
 from src.qa_service import QAService
 from dotenv import load_dotenv
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 app = FastAPI(title="QA Service", version="1.0.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 qa_service = None
 
