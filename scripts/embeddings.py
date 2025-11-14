@@ -1,9 +1,9 @@
-
 import google.generativeai as genai
 import chromadb
 import json
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
@@ -21,14 +21,14 @@ metadatas = [
     }
     for m in messages
 ]
-ids = [str(m["id"]) for m in messages]  
+ids = [str(m["id"]) for m in messages]
 
 embeddings_list = []
 for text in texts:
     result = genai.embed_content(
         model="models/embedding-001",
         content=text,
-        task_type="retrieval_document"  
+        task_type="retrieval_document"
     )
     embeddings_list.append(result["embedding"])
 
@@ -45,3 +45,4 @@ collection.add(
 )
 
 print(f"Stored {len(ids)} messages in ChromaDB with Gemini embeddings.")
+

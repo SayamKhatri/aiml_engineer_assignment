@@ -6,27 +6,29 @@ import chromadb
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-def chroma_search(query, user_name=None, category=None, top_k=40):
+
+def get_data_path(relative_path):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_dir, relative_path)
+
+
+def chroma_search(query, user_name=None, category=None, top_k=25):
     query_emb = genai.embed_content(
         model="models/embedding-001",
         content=query,
         task_type="retrieval_query"
     )["embedding"]
 
-    # ✅ Normalize category if it's a list
     if isinstance(category, list):
-        # Just take the first category if one-element list
-        # (main.py already loops if there are multiple)
         category = category[0] if category else None
 
-    # ✅ Normalize casing & whitespace for consistent Chroma matching
     if user_name:
-        user_name = user_name.strip().title()  # e.g. "vikram desai" → "Vikram Desai"
+        user_name = user_name.strip().title()
     if category:
         category = category.strip()
 
-    # Connect to Chroma store 
-    chroma_client = chromadb.PersistentClient(path="data/chroma_store")
+    chroma_path = get_data_path("data/chroma_store")
+    chroma_client = chromadb.PersistentClient(path=chroma_path)
     collection = chroma_client.get_collection("member_messages")
 
     def run_query(where_filter):
@@ -49,14 +51,12 @@ def chroma_search(query, user_name=None, category=None, top_k=40):
         results = run_query(where)
         if results:
             return results
-        print("No results for user+category, retrying with user only...")
 
     if user_name:
         where = {"user_name": {"$eq": user_name}}
         results = run_query(where)
         if results:
             return results
-        print("No results for user only, retrying with category only...")
 
     if category:
         where = {"category": {"$eq": category}}
@@ -64,5 +64,4 @@ def chroma_search(query, user_name=None, category=None, top_k=40):
         if results:
             return results
 
-    print("No results found in any fallback level.")
     return []
