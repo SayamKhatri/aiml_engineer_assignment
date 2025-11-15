@@ -161,7 +161,7 @@ User preferences (“I prefer aisle seats”, “low-scent amenities”) and sen
 
 Several users restate the same preferences or issues across multiple messages (e.g., repeated billing concerns or travel preferences). This redundancy requires consolidation to build consistent user profiles.
 
----
+
 
 
 
