@@ -16,6 +16,13 @@ https://qa-service-226254600937.us-central1.run.app
 [https://aurora-assistant.lovable.app](https://aurora-assistant.lovable.app/)
 
 -----
+
+## Demo Video:
+
+https://github.com/user-attachments/assets/f791e911-43c6-4333-b4a0-3c6135520f71
+
+-----
+
 ### System Design Summary
 
 The overall system follows a **multi-stage pipeline** that converts an open-ended question into an exact, evidence-backed answer.
@@ -160,6 +167,7 @@ User preferences (“I prefer aisle seats”, “low-scent amenities”) and sen
 ### **4. Redundant or Repeated Information**
 
 Several users restate the same preferences or issues across multiple messages (e.g., repeated billing concerns or travel preferences). This redundancy requires consolidation to build consistent user profiles.
+
 
 
 
