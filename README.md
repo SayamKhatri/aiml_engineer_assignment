@@ -5,7 +5,17 @@ The service is built with **FastAPI**, powered by **Groq’s LLaMA-3.3 (70B)** f
 The entire system is **containerized with Docker** and **deployed on Google Cloud Run**, making it publicly accessible via REST API.
 
 -----
+## **Try it Out**
+**Backend API:**
 
+```text
+https://qa-service-226254600937.us-central1.run.app
+```
+**ChatBot UI URL:**
+
+[https://aurora-assistant.lovable.app](https://aurora-assistant.lovable.app/)
+
+-----
 ### System Design Summary
 
 The overall system follows a **multi-stage pipeline** that converts an open-ended question into an exact, evidence-backed answer.
@@ -128,6 +138,7 @@ The final prompt is passed to the **Groq LLaMA-3.3 70B** model to produce the an
 The final pipeline balances **accuracy, transparency, and efficiency**, while remaining lightweight enough to run fully within a Cloud Run container.
 
 ---
+
 
 
 
