@@ -141,6 +141,28 @@ The final pipeline balances **accuracy, transparency, and efficiency**, while re
 
 ---
 
+# **Data Insights**
+
+Analysis of the member-message dataset reveals several data-quality issues and inconsistencies that impact how a natural-language QA system must be designed:
+
+### **1. Mixed and Often Irrelevant Message Intent**
+
+The dataset includes bookings, profile updates, complaints, preferences, confirmations, and many non-informative “thank you”, "I finally", or feedback messages. These conversational messages contain no actionable data and must be filtered to avoid polluting factual retrieval.
+
+### **2. Ambiguous or Underspecified Requests**
+
+Many requests lack essential information such as event names, venues, or locations (e.g., “four front-row seats for the game on November 20”). This creates ambiguity and requires the system to handle missing-context scenarios.
+
+### **3. Preferences and Profile Data Embedded in Free-Form Text**
+
+User preferences (“I prefer aisle seats”, “low-scent amenities”) and sensitive profile updates (phone numbers, credit-card suffixes, addresses, family contacts) appear inconsistently in unstructured text. These require careful extraction and normalization.
+
+### **4. Redundant or Repeated Information**
+
+Several users restate the same preferences or issues across multiple messages (e.g., repeated billing concerns or travel preferences). This redundancy requires consolidation to build consistent user profiles.
+
+---
+
 
 
 
