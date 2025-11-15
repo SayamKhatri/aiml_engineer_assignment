@@ -126,13 +126,8 @@ The final prompt is passed to the **Groq LLaMA-3.3 70B** model to produce the an
 
 ---
 
-### **Alternative Approaches Considered**
+## **Alternative Approaches and Iterative Improvements**
 
-Perfect — here’s a **GitHub-ready Markdown table** summarizing your **alternative approaches / iteration journey**, formatted cleanly and concise enough to paste directly into your README.md under **“Alternative Approaches and Iterative Improvements”** 👇
-
----
-
-### 🧠 Alternative Approaches and Iterative Improvements
 
 | **Iteration**                                    | **Approach Tried**                                                      | **Problem Identified**                                                           | **Improvement / Solution Implemented**                                              | **Key Outcome**                                       |
 | ------------------------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------- |
@@ -145,6 +140,7 @@ Perfect — here’s a **GitHub-ready Markdown table** summarizing your **altern
 The final pipeline balances **accuracy, transparency, and efficiency**, while remaining lightweight enough to run fully within a Cloud Run container.
 
 ---
+
 
 
 
