@@ -128,16 +128,24 @@ The final prompt is passed to the **Groq LLaMA-3.3 70B** model to produce the an
 
 ### **Alternative Approaches Considered**
 
-| Approach                    | Why Rejected                                                           |
-| --------------------------- | ---------------------------------------------------------------------- |
-| Fine-tuning an LLM          | Insufficient labeled data; overkill for current scope.                 |
-| OpenSearch Hybrid Index     | Adds infra overhead; Cloud Run’s stateless model favored local Chroma. |
-| Knowledge Graph Integration | Needs structured member relations not available in raw text.           |
-| Simple Keyword Search Only  | Poor recall and reasoning accuracy on paraphrased queries.             |
+Perfect — here’s a **GitHub-ready Markdown table** summarizing your **alternative approaches / iteration journey**, formatted cleanly and concise enough to paste directly into your README.md under **“Alternative Approaches and Iterative Improvements”** 👇
+
+---
+
+### 🧠 Alternative Approaches and Iterative Improvements
+
+| **Iteration**                                    | **Approach Tried**                                                      | **Problem Identified**                                                           | **Improvement / Solution Implemented**                                              | **Key Outcome**                                       |
+| ------------------------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| **1️⃣ Pure Vector Search**                       | Used Google Generative AI embeddings + ChromaDB for semantic retrieval. | Missed exact keyword matches (“diet” vs “dietary”), inconsistent user targeting. | Added lexical layer for precise keyword matching.                                   | Improved recall but still lacked precision.           |
+| **2️⃣ Hybrid Search (BM25 + Vector)**            | Combined dense semantic retrieval with BM25 keyword scoring.            | Some queries retrieved irrelevant users or off-topic results.                    | Introduced user and category filters in query metadata.                             | Better factual grounding and relevance.               |
+| **3️⃣ Name Resolution Layer**                    | Chroma filtering required exact matches (`user_name` mismatch).         | Queries like “Vikram D.” failed to match “Vikram Desai.”                         | Implemented fuzzy name resolution using RapidFuzz with canonical `user_index.json`. | Consistent, user-specific retrieval accuracy.         |
+| **4️⃣ Category-Aware Filtering**                 | All messages stored together; semantic bleed between topics.            | Travel, dining, and wellness messages overlapped semantically.                   | Clustered messages (K-Means) + LLM labeling → consolidated 5 major categories.      | Retrieval now restricted to relevant category slices. |
+| **5️⃣ Two-Category Reasoning Extraction**        | LLM sometimes picked only one narrow category.                          | Ambiguous queries (e.g., “dietary preferences”) span domains.                    | Modified extractor to return both *direct* and *reasoning-based* categories.        | Higher recall and cross-domain coverage.              
 
 The final pipeline balances **accuracy, transparency, and efficiency**, while remaining lightweight enough to run fully within a Cloud Run container.
 
 ---
+
 
 
 
